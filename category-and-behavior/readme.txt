@@ -1,0 +1,1 @@
+basic model is the code to produce the result of GRU4Rec(category) and GRU4Rec(behavior)
