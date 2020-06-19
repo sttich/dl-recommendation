@@ -1,4 +1,4 @@
-# Deep Learning for Sequential Recommendation: Algorithms, InfluentialFactors, and Evaluations
+# Deep Learning for Sequential Recommendation: Algorithms, Influential Factors, and Evaluations
 Here is the code to reproduce the experiment result in our paper "Deep Learning for Sequential Recommendation: Algorithms, InfluentialFactors, and Evaluations"
 
 - **GRU4Rec** is the code to reproduce the result of basic GRU4Rec, sample size, sample alpha, loss function and data augmentation. 
@@ -8,7 +8,8 @@ Here is the code to reproduce the experiment result in our paper "Deep Learning 
 - **attention-mechanism** is the code to reproduce the result of Attention mechanism
 - **user** is the code to reproduce the result of user representation(implicit, embedded and recurrent)
 
-
+# Experiment result
+Please go to (https://docs.google.com/spreadsheets/d/1Qs5KKugzheDMFH3YLNoQl50Z3hxRPAvTaEYavGgb5sc/edit?usp=sharing) to find more experiment results that we didn't report in the paper.
 
 # Acknowledgement
 - **GRU4Rec** is the original [Theano implementation](https://github.com/hidasib/GRU4Rec) GRU4Rec.
