@@ -7,6 +7,7 @@ Here is the code to reproduce the experiment result in our paper "Deep Learning 
 - **category-and-behavior** is the code to reproduce the result of P-GRU, C-GRU and B-GRU, GRU4Rec(behavior) and GRU4Rec(category)
 - **attention-mechanism** is the code to reproduce the result of Attention mechanism
 - **user** is the code to reproduce the result of user representation(implicit, embedded and recurrent)
+- **data_preprocess** is the preprocessing code for each dataset.
 
 # Experiment result
 Please go to https://docs.google.com/spreadsheets/d/1Qs5KKugzheDMFH3YLNoQl50Z3hxRPAvTaEYavGgb5sc/edit?usp=sharing to find more experiment results that we didn't report in the paper.
