@@ -17,5 +17,5 @@ Here is the code to reproduce the experiment result in our paper "Deep Learning 
 Session-Based Recommendation" (http://bit.ly/2nfNldD)
 - **category-and-behavior** is modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow) GRU4Rec.
 - **attention-mechanism** is modified based on the [Pytorch implementation](https://github.com/Wang-Shuo/Neural-Attentive-Session-Based-Recommendation-PyTorch) NARM 
-- **user** implicit and embedded are modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow) GRU4Rec.
-recurrent is the original code for HRNN (https://github.com/mquad/hgru4rec)
+- **user**Implicit and Embedded are modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow) GRU4Rec.
+Recurrent is the original code for HRNN (https://github.com/mquad/hgru4rec)
