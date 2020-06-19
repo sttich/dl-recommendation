@@ -13,8 +13,9 @@ Here is the code to reproduce the experiment result in our paper "Deep Learning 
 # Acknowledgement
 - **GRU4Rec** is the original [Theano implementation](https://github.com/hidasib/GRU4Rec).
 - **GRU4Rec-with-dwell-time** is modified based on the original [Theano implementation](https://github.com/hidasib/GRU4Rec).
-- **GRU4Rec-with-knn** is 
+- **GRU4Rec-with-knn** is the original code for paper "When Recurrent Neural Networks meet the Neighborhood for
+Session-Based Recommendation" (http://bit.ly/2nfNldD)
 - **category-and-behavior** is modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow)
-- **attention-mechanism** is modified based on the [Pytorch implementation] NARM (https://github.com/Wang-Shuo/Neural-Attentive-Session-Based-Recommendation-PyTorch)
+- **attention-mechanism** is modified based on the [Pytorch implementation](https://github.com/Wang-Shuo/Neural-Attentive-Session-Based-Recommendation-PyTorch) NARM 
 - **user** implicit and embedded are modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow).
 recurrent is the original code for HRNN (https://github.com/mquad/hgru4rec)
