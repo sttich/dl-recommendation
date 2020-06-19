@@ -9,7 +9,7 @@ Here is the code to reproduce the experiment result in our paper "Deep Learning 
 - **user** is the code to reproduce the result of user representation(implicit, embedded and recurrent)
 
 # Experiment result
-Please go to (https://docs.google.com/spreadsheets/d/1Qs5KKugzheDMFH3YLNoQl50Z3hxRPAvTaEYavGgb5sc/edit?usp=sharing) to find more experiment results that we didn't report in the paper.
+Please go to https://docs.google.com/spreadsheets/d/1Qs5KKugzheDMFH3YLNoQl50Z3hxRPAvTaEYavGgb5sc/edit?usp=sharing to find more experiment results that we didn't report in the paper.
 
 # Acknowledgement
 - **GRU4Rec** is the original [Theano implementation](https://github.com/hidasib/GRU4Rec) GRU4Rec.
