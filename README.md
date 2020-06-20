@@ -22,5 +22,5 @@ Please go to https://docs.google.com/spreadsheets/d/1Qs5KKugzheDMFH3YLNoQl50Z3hx
 Session-Based Recommendation" (http://bit.ly/2nfNldD)
 - **category-and-behavior** is modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow) GRU4Rec.
 - **attention-mechanism** is modified based on the [Pytorch implementation](https://github.com/Wang-Shuo/Neural-Attentive-Session-Based-Recommendation-PyTorch) NARM 
-- **user**Implicit and Embedded are modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow) GRU4Rec.
+- **user** Implicit and Embedded are modified based on the [TensorFlow implementation](https://github.com/Songweiping/GRU4Rec_TensorFlow) GRU4Rec.
 Recurrent is the original code for HRNN (https://github.com/mquad/hgru4rec)
