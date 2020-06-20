@@ -1,6 +1,6 @@
 # Deep Learning for Sequential Recommendation: Algorithms, Influential Factors, and Evaluations
-Here is the code to reproduce the experiment result in our paper "Deep Learning for Sequential Recommendation: Algorithms, InfluentialFactors, and Evaluations"
-
+Here is the code and datasets to reproduce the experiment result in our paper "Deep Learning for Sequential Recommendation: Algorithms, InfluentialFactors, and Evaluations"
+# Code
 - **GRU4Rec** is the code to reproduce the result of basic GRU4Rec, sample size, sample alpha, loss function and data augmentation. 
 - **GRU4Rec-with-dwell-time** is the code to reproduce the result of Dwell time.
 - **GRU4Rec-with-knn** is the code to reproduce the result of KNN
@@ -8,7 +8,10 @@ Here is the code to reproduce the experiment result in our paper "Deep Learning 
 - **attention-mechanism** is the code to reproduce the result of Attention mechanism
 - **user** is the code to reproduce the result of user representation(implicit, embedded and recurrent)
 - **data_preprocess** is the preprocessing code for each dataset.
-
+# Datasets
+- **RSC15** http://www.kaggle.com/chadgostopp/recsys-challenge-2015
+- **RSC19** http://www.recsyschallenge.com/2019/
+- **LastFM** http://mir.dcs.gla.ac.uk/lastfm/
 # Experiment result
 Please go to https://docs.google.com/spreadsheets/d/1Qs5KKugzheDMFH3YLNoQl50Z3hxRPAvTaEYavGgb5sc/edit?usp=sharing to find more experiment results that we didn't report in the paper.
 
