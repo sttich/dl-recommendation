@@ -19,11 +19,6 @@ class GRU4Rec:
 
         self.layers = args.layers
         self.rnn_size = args.rnn_size
-        #self.behavior_size=args.behavior_size
-        #self.category_size = args.category_size
-        self.item_size = args.item_size
-        #self.rnn_size = args.item_size
-        #self.rnn_size = args.category_size + args.item_size
         self.n_epochs = args.n_epochs
         self.batch_size = args.batch_size
         self.dropout_p_hidden = args.dropout_p_hidden
@@ -38,8 +33,6 @@ class GRU4Rec:
         self.time_key = args.time_key
         self.grad_cap = args.grad_cap
         self.n_items = args.n_items
-        #self.n_behaviors=args.n_behaviors
-        #self.n_category=args.n_category
         self.n_samples=args.n_samples
         self.sample_alpha=args.sample_alpha
         self.bpr_max_lambda=args.bpr_max_lambda
@@ -112,7 +105,7 @@ class GRU4Rec:
         self.predict_state = [np.zeros([self.batch_size, self.rnn_size], dtype=np.float32) for _ in range(self.layers)]
         ckpt = tf.train.get_checkpoint_state(self.checkpoint_dir)
         if ckpt and ckpt.model_checkpoint_path:
-            self.saver.restore(sess, '{}/gru-model_rsc15_0-{}'.format(self.checkpoint_dir, args.test_model))
+            self.saver.restore(sess, '{}/gru-model_rsc15-{}'.format(self.checkpoint_dir, args.test_model))
 
     ########################ACTIVATION FUNCTIONS#########################
     def linear(self, X):
@@ -160,21 +153,8 @@ class GRU4Rec:
         return tf.reduce_mean(tf.reduce_sum(term1 * term2, axis=1))
 
     def bpr_max(self, yhat):
-        ####yhat  [batch_size,batch_size+n_sample]
-        #print(self.sess.run(yhat))
-        #a=gpu_diag_wide(yhat)
-        #print('shape',a.get_shape())
 
         softmax_scores = self.softmax_neg(yhat)
-        #print(self.sess.run(softmax_scores))
-        #import gc
-        #gc.collection()
-        '''
-        term1 = - tf.log(
-            tf.reduce_sum((tf.expand_dims(tf.sigmoid(gpu_diag_wide(yhat)), 1) - yhat) * softmax_scores, axis=1) + 1e-24)
-        term2 = self.bpr_max_lambda * tf.reduce_sum((yhat ** 2) * softmax_scores, axis=1)
-        '''
-        ###tf.expand_dims(gpu_diag_wide(yhat),1)  [y1,y1,y1,...,y1][y2,...]
         term1 = - tf.log(
             tf.reduce_sum(tf.sigmoid(tf.expand_dims(gpu_diag_wide(yhat),1) - yhat) * softmax_scores, axis=1) + 1e-24)
         term2 = self.bpr_max_lambda * tf.reduce_sum((yhat ** 2) * softmax_scores, axis=1)
@@ -196,9 +176,6 @@ class GRU4Rec:
         
         self.X = tf.placeholder(tf.int32, [self.batch_size], name='input')
         self.Y = tf.placeholder(tf.int32, [self.batch_size+self.n_samples], name='output')
-        #self.Behavior = tf.placeholder(tf.int32, [self.batch_size], name='behavior')
-        #self.Category = tf.placeholder(tf.int32, [self.batch_size], name='category')
-        # self.rnn=self.behavior_size+self.category_size+self.item_size
 
         self.state = [tf.placeholder(tf.float32, [self.batch_size, self.rnn_size], name='rnn_state') for _ in range(self.layers)]
         self.global_step = tf.Variable(0, name='global_step', trainable=False)
@@ -210,9 +187,6 @@ class GRU4Rec:
             else:
                 initializer = tf.random_uniform_initializer(minval=-sigma, maxval=sigma)
             embedding = tf.get_variable('embedding', [self.n_items, self.rnn_size], initializer=initializer)
-            #embedding_behavior = tf.get_variable('embedding_behavior', [self.n_behaviors, self.behavior_size], initializer=initializer)
-            #embedding_category = tf.get_variable('embedding_category', [self.n_category, self.category_size], initializer=initializer)
-            #embedding_item = tf.get_variable('embedding_item', [self.n_items, self.item_size], initializer=initializer)
 
             softmax_W = tf.get_variable('softmax_w', [self.n_items, self.rnn_size], initializer=initializer)
             softmax_b = tf.get_variable('softmax_b', [self.n_items], initializer=tf.constant_initializer(0.0))
@@ -220,15 +194,8 @@ class GRU4Rec:
             cell = rnn_cell.GRUCell(self.rnn_size, activation=self.hidden_act)
             drop_cell = rnn_cell.DropoutWrapper(cell, output_keep_prob=self.dropout_p_hidden)
             stacked_cell = rnn_cell.MultiRNNCell([drop_cell] * self.layers)
-            #inputs=tf.concat([tf.nn.embedding_lookup(embedding_item, self.X),tf.nn.embedding_lookup(embedding_category, self.Category)],1)
             inputs = tf.nn.embedding_lookup(embedding, self.X)
-            #inputs = tf.concat([tf.nn.embedding_lookup(embedding_item, self.X),
-             #                   tf.nn.embedding_lookup(embedding_category, self.Category)], 1)
-            #inputs = tf.nn.embedding_lookup(embedding, self.X)
             output, state = stacked_cell(inputs, tuple(self.state))
-            #output=tf.concat([output,tf.nn.embedding_lookup(embedding_behavior,self.Behavior)],1)
-            #output=tf.contrib.layers.fully_connected(output,self.latent_size,activation_fn=self.hidden_act)
-            #output=tf.add(output,tf.nn.embedding_lookup(embedding_categoty, self.Category))
             self.final_state = state
 
         if self.is_training:
@@ -309,22 +276,16 @@ class GRU4Rec:
             session_idx_arr = np.arange(len(offset_sessions)-1)
             iters = np.arange(self.batch_size)
             maxiter = iters.max()
-            #每个session的起始位置
+
             start = offset_sessions[session_idx_arr[iters]]
             end = offset_sessions[session_idx_arr[iters]+1]
             finished = False
             while not finished:
                 minlen = (end-start).min()
                 out_idx = data.ItemIdx.values[start]
-                #out_behavior=data.category_id.values[start]
-                #out_behavior = data.action_type.values[start]
                 for i in range(minlen-1):
                     in_idx = out_idx
-                    #in_behavior=out_behavior
                     out_idx = data.ItemIdx.values[start+i+1]
-                    #out_behavior=data.category_id.values[start+i+1]
-                    #out_behavior = data.action_type.values[start + i + 1]
-                    # prepare inputs, targeted outputs and hidden states
                     if self.n_samples:
                         if sample_store:
                             if sample_pointer == generate_length:

@@ -49,9 +49,6 @@ class Args():
 def parseArgs():
     parser = argparse.ArgumentParser(description='GRU4Rec args')
     parser.add_argument('--layer', default=1, type=int)
-    #parser.add_argument('--behavior_size', default=100, type=int)
-    #parser.add_argument('--category_size', default=70, type=int)
-    parser.add_argument('--item_size', default=100, type=int)
     parser.add_argument('--rnn_size', default=100, type=int)
     parser.add_argument('--epoch', default=15, type=int)  
     parser.add_argument('--lr', default=0.001, type=float)
@@ -79,13 +76,8 @@ if __name__ == '__main__':
 
     args = Args()
     args.n_items = len(data['ItemId'].unique())
-    #args.n_behaviors = len(data['action_type'].unique())
-    #args.n_category=len(data['category_id'].unique())
     args.layers = command_line.layer
     args.rnn_size = command_line.rnn_size
-    #args.behavior_size=command_line.behavior_size
-    #args.category_size = command_line.category_size
-    args.item_size=command_line.item_size
     args.n_epochs = command_line.epoch
     args.learning_rate = command_line.lr
     args.is_training = command_line.train
