@@ -1,5 +1,5 @@
 # Deep Learning for Sequential Recommendation: Algorithms, Influential Factors, and Evaluations
-Here is the code and datasets to reproduce the experiment result in our paper "Deep Learning for Sequential Recommendation: Algorithms, InfluentialFactors, and Evaluations"
+Here is the code and datasets to reproduce the experiment result in the paper "Deep Learning for Sequential Recommendation: Algorithms, InfluentialFactors, and Evaluations"
 # Code
 - **GRU4Rec** is the code to reproduce the result of basic GRU4Rec, sample size, sample alpha, loss function and data augmentation. 
 - **GRU4Rec-with-dwell-time** is the code to reproduce the result of Dwell time.
